@@ -25,6 +25,7 @@ namespace R5T.Tencteria
 
         /// <summary>
         /// Adds the database context, connection string provider, and database context options builder configurator.
+        /// This should come at the END of any overridden method.
         /// </summary>
         protected override void ConfigureServicesBody(IServiceCollection services)
         {

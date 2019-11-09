@@ -32,4 +32,21 @@ namespace R5T.Tencteria
             services.AddDatabaseContext<TDbContext, TConnectionStringProvider, TDatabaseContextOptionsBuilderConfigurator>();
         }
     }
+
+    public class DesignTimeDbContextFactoryStartupBase<TConnectionStringProvider, TDatabaseContextOptionsBuilderConfigurator>
+        : ApplicationStartupBase, IDesignTimeDbContextFactoryStartup
+        where TConnectionStringProvider : class, IConnectionStringProvider
+        where TDatabaseContextOptionsBuilderConfigurator : class, IDatabaseContextOptionsBuilderConfigurator
+    {
+        public DesignTimeDbContextFactoryStartupBase(ILogger<DesignTimeDbContextFactoryStartupBase<TConnectionStringProvider, TDatabaseContextOptionsBuilderConfigurator>> logger)
+            : base(logger)
+        {
+        }
+
+        protected void AddDatabaseContext<TDbContext>(IServiceCollection services)
+            where TDbContext: DbContext
+        {
+            services.AddDatabaseContext<TDbContext, TConnectionStringProvider, TDatabaseContextOptionsBuilderConfigurator>();
+        }
+    }
 }
